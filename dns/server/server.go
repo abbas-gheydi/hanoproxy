@@ -21,10 +21,10 @@ type ServerConfs struct {
 var (
 	Configs = &ServerConfs{EnableRecursiveDnsServer: true,
 		UpStreamDnsServer: "8.8.8.8",
-		HADomain:          "abbas.local",
-		ListenPort:        "1053",
+		HADomain:          "ha.local",
+		ListenPort:        "53",
 		ListenIP:          "0.0.0.0",
-		TTL:               "5",
+		TTL:               "60",
 	}
 )
 
