@@ -47,7 +47,7 @@ DnsRecords:
      Port: "26379"
      Password: "auth_pass"
 
-   - Addr: "192.168.3.5"
+   - Addr: "192.168.3.6"
      Port: "26379"
      Password: "auth_pass"
 
