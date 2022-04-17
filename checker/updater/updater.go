@@ -82,7 +82,6 @@ func FillRecordTables() {
 func HealthCheck() {
 
 	for {
-		time.Sleep(time.Second * time.Duration(confs.HaNoProxy.GlobalOptions.UpdateInterval))
 		for _, src := range srcRecordTable.Records {
 			if src.Options.CheckForHealth {
 
@@ -101,6 +100,7 @@ func HealthCheck() {
 				}
 			}
 		}
+		time.Sleep(time.Second * time.Duration(confs.HaNoProxy.GlobalOptions.UpdateInterval))
 	}
 
 }
