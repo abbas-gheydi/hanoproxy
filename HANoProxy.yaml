@@ -1,0 +1,91 @@
+
+GlobalOptions:
+       EnableRecursiveDnsServer: true
+       UpStreamDnsServer:        "1.1.1.1"
+       HADomain:                 "ha.local" #domain that supports HealthCheck.
+       ListenPort:               "53"       #udp
+       ListenIP:                 "0.0.0.0"
+       TTL:                      "10"       #Seconds
+       UpdateInterval:           "60"       #Seconds
+
+
+
+DnsRecords:
+
+
+############ postgres example ######
+ - Name:        "database"
+   ServiceType: "postgres"
+   Options:
+    CheckForHealth: true
+    MasterOnly: true
+    SlaveOnly:  false
+   Ip:
+   - Addr: "10.10.10.1"
+     Port: "5432"
+     UserName: "postgres"
+     Password: "pass"
+
+   - Addr: "10.10.10.2"
+     Port: "5432"
+     UserName: "postgres"
+     Password: "pass"
+
+
+    
+########## sentinel example #########
+ - Name:        "myredis"
+   ServiceType: "sentinel"
+   Options:
+    CheckForHealth: true
+    SentinelMonitorMasterName: "mymaster"
+   Ip:
+     
+   - Addr: "192.168.3.68" #predefined master ip (optional, it automatically detected by server)
+   Sentinels:
+   - Addr: "192.168.3.5"
+     Port: "26379"
+     Password: "auth_pass"
+
+   - Addr: "192.168.3.5"
+     Port: "26379"
+     Password: "auth_pass"
+
+############ http check ###########
+ - Name:        "www"
+   ServiceType: "http"
+   Options:
+    CheckForHealth: true
+    Expected_Response_Code: 200
+    RetryCount: 1
+   Ip:
+   - Addr: "10.1.1.1"
+     Url: "http://10.1.1.1"
+
+   - Addr: "10.1.1.2"
+     Url: "https://www.mywebsite.com"
+
+############### tcp check #########
+ - Name:        "imap"
+   ServiceType: "tcp"
+   Options:
+    CheckForHealth: true
+    RetryCount: 1
+ 
+   Ip:
+   - Addr: "10.20.30.1"
+     port: "143"
+   - Addr: "10.20.30.2"
+     port: "143"
+     
+
+########### No Health check ########
+ - Name:        "blog"
+   ServiceType: "none"
+   Options:
+    CheckForHealth: false
+   Ip:
+   - Addr: "10.10.1.1"
+   - Addr: "10.10.1.2"
+
+
