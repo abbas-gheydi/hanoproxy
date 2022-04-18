@@ -1,11 +1,13 @@
 package model
 
 const (
-	Postgres string = "postgres"
-	Sentinel string = "sentinel"
-	None     string = ""
-	HTTP     string = "http"
-	TCP      string = "tcp"
+	Postgres      string = "postgres"
+	Sentinel      string = "sentinel"
+	None          string = ""
+	HTTP          string = "http"
+	TCP           string = "tcp"
+	ActivePassive string = "active-passive"
+	RoundRobin    string = "roundrobin"
 )
 
 type IpAddr struct {
@@ -35,4 +37,5 @@ type Option struct {
 	Expected_Response_Code    int
 	HttpMethod                string
 	RetryCount                int
+	LBmethod                  string
 }

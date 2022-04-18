@@ -2,7 +2,6 @@ package records
 
 import (
 	"errors"
-	"log"
 	"strings"
 	"sync"
 
@@ -37,21 +36,11 @@ type recordMap struct {
 	Mutex sync.Mutex
 }
 
-func roundRobind(hint int, lengh int) int {
-	if lengh > 1 {
-		if hint+1 >= lengh {
-			hint = 0
-		} else {
-			hint++
-		}
-	}
-	return hint
-}
-
 func (r *recordMap) Initialize() {
 	r.Table = make(map[string]model.Record)
 
 }
+
 func (r *recordMap) Lookup(requestQuery string) (responseIp string, count int, err error) {
 	//convert all name to lowercase
 	requestQuery = strings.ToLower(requestQuery)
@@ -59,26 +48,13 @@ func (r *recordMap) Lookup(requestQuery string) (responseIp string, count int, e
 	count = len(r.Table[requestQuery].Ip)
 
 	if count > 0 {
+		//choose load balancing method
+		if r.Table[requestQuery].Options.LBmethod == model.ActivePassive {
 
-		responseIpAddr := r.Table[requestQuery]
+			responseIp, count = r.activePassiveLB(requestQuery)
+		} else {
 
-		for i := 0; i < count; i++ {
-
-			responseIpAddr.LastHint = roundRobind(responseIpAddr.LastHint, len(responseIpAddr.Ip))
-			r.Table[requestQuery] = responseIpAddr
-			if responseIpAddr.Ip[responseIpAddr.LastHint].IsHealthy || !responseIpAddr.Options.CheckForHealth {
-				responseIp = responseIpAddr.Ip[responseIpAddr.LastHint].Addr
-				break
-
-			} else {
-				//if all ip address are unhealthy then return first one
-				if i+1 == count {
-
-					responseIp = responseIpAddr.Ip[0].Addr
-					log.Println("Warining, All Ip Addresses are unHealthy,then just return first record for: ", requestQuery)
-				}
-
-			}
+			responseIp, count = r.roundRobinLB(requestQuery)
 		}
 
 	}
