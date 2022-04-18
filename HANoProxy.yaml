@@ -2,24 +2,54 @@
 GlobalOptions:
        EnableRecursiveDnsServer: true
        UpStreamDnsServer:        "1.1.1.1"
-       HADomain:                 "ha.local" #domain that supports HealthCheck.
-       ListenPort:               "53"       #udp
+       HADomain:                 "ha.local"   #domain that supports HealthCheck.
+       ListenPort:               "1053"       #udp
        ListenIP:                 "0.0.0.0"
-       TTL:                      "10"       #Seconds
-       UpdateInterval:           "60"       #Seconds
+       TTL:                      "10"         #Seconds
+       UpdateInterval:           "6"          #Seconds
 
 
 
 DnsRecords:
+##################################################
+############ HTTP Check (round robin) ############
+ - Name:        "www"
+   ServiceType: "http"
+   Options:
+    CheckForHealth: true
+    Expected_Response_Code: 200
+    RetryCount: 1
+   Ip:
+   - Addr: "10.1.1.1"
+     Url: "http://10.1.1.1"
 
+   - Addr: "10.1.1.2"
+     Url: "https://www.mywebsite.com"
 
-############ postgres example ######
+##################################################
+########## HTTP Check (Active-Passive) ###########
+ - Name:        "portal"
+   ServiceType: "http"
+   Options:
+    CheckForHealth: true
+    Expected_Response_Code: 200
+    RetryCount: 1
+    LBmethod: "active-passive"
+   Ip:
+   - Addr: "10.1.1.1"
+     Url: "http://10.1.1.1"
+
+   - Addr: "10.1.1.2"
+     Url: "https://www.mywebsite.com"
+##################################################
+############## PostgreSQL example #################
  - Name:        "database"
    ServiceType: "postgres"
    Options:
     CheckForHealth: true
     MasterOnly: true
     SlaveOnly:  false
+    LBmethod: "active-passive"
    Ip:
    - Addr: "10.10.10.1"
      Port: "5432"
@@ -32,8 +62,8 @@ DnsRecords:
      Password: "pass"
 
 
-    
-########## sentinel example #########
+##################################################   
+############# Redis Sentinel example #############
  - Name:        "myredis"
    ServiceType: "sentinel"
    Options:
@@ -51,21 +81,9 @@ DnsRecords:
      Port: "26379"
      Password: "auth_pass"
 
-############ http check ###########
- - Name:        "www"
-   ServiceType: "http"
-   Options:
-    CheckForHealth: true
-    Expected_Response_Code: 200
-    RetryCount: 1
-   Ip:
-   - Addr: "10.1.1.1"
-     Url: "http://10.1.1.1"
 
-   - Addr: "10.1.1.2"
-     Url: "https://www.mywebsite.com"
-
-############### tcp check #########
+##################################################
+################### TCP Check ####################
  - Name:        "imap"
    ServiceType: "tcp"
    Options:
@@ -78,8 +96,8 @@ DnsRecords:
    - Addr: "10.20.30.2"
      port: "143"
      
-
-########### No Health check ########
+##################################################
+################# No Health Check ################
  - Name:        "blog"
    ServiceType: "none"
    Options:
@@ -87,5 +105,4 @@ DnsRecords:
    Ip:
    - Addr: "10.10.1.1"
    - Addr: "10.10.1.2"
-
 
