@@ -39,9 +39,11 @@ func prepareRecordLists() {
 			src.Name = strings.ToLower(src.Name)
 		}
 		//make all ip healty for the beginning
-		for it := range src.Ip {
-			src.Ip[it].IsHealthy = true
-		}
+		/*
+			for it := range src.Ip {
+				src.Ip[it].IsHealthy = true
+			}
+		*/
 
 		confs.HaNoProxy.DnsRecords[i] = src
 
