@@ -3,10 +3,10 @@ GlobalOptions:
        EnableRecursiveDnsServer: true
        UpStreamDnsServer:        "1.1.1.1"
        HADomain:                 "ha.local"   #domain that supports HealthCheck.
-       ListenPort:               "1053"       #udp
+       ListenPort:               "53"         #udp
        ListenIP:                 "0.0.0.0"
        TTL:                      "10"         #Seconds
-       UpdateInterval:           "6"          #Seconds
+       UpdateInterval:           "60"         #Seconds
 
 
 
