@@ -30,7 +30,7 @@ health Check protocols:
     
 -   Redis Sentinel master/replica detection
     
--   PostgreSQL master-slave detectaion
+-   PostgreSQL master/slave detectaion
     
 
   
