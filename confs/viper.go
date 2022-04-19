@@ -19,7 +19,7 @@ type Configs struct {
 }
 
 func Read() {
-	viper.SetConfigName("HANoProxy")
+	viper.SetConfigName("hanoproxy")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
 	viper.AddConfigPath("/etc/hanoproxy/")
