@@ -159,7 +159,7 @@ After master failure:
 
 +-----------+   +-----------+   +-----------+
 | Unhealthy |   |  redis    |   |  redis    |
-|    \ /    |   |new master |   |  Replica1 |
+|    \ /    |   |new master |   |  Replica2 |
 |    / \    |   |10.10.10.2 |   |10.10.10.3 |
 +-----------+   +-----------+   +-----------+
                 |               
