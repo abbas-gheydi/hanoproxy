@@ -38,7 +38,7 @@ health Check protocols:
 
 ## Redis Sentinel Example:
 
-In this scenario we have 3 redis servers and redis-sentinel installed on them as well. Our application does not understand redis Sentinel and it only accepts one ip address/dns for redis connection.
+In this scenario we have 3 redis servers and redis-sentinel installed on them as well. the example application does not understand redis Sentinel and it only accepts one ip address/dns for redis connection.
 
 The application uses HAnoProxY as a Dns Resolver.
 
