@@ -134,7 +134,7 @@ Before master failure:
 
 +-----------+   +-----------+   +-----------+
 |  redis    |   |  redis    |   |  redis    |
-|  master   |   |  Replica1 |   |  Replica1 |
+|  master   |   |  Replica1 |   |  Replica2 |
 |10.10.10.1 |   |10.10.10.2 |   |10.10.10.3 |
 +-----------+   +-----------+   +-----------+
       |
