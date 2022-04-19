@@ -194,7 +194,7 @@ Then run hanoproxy.
 
 By default, non-root users can not bind port 53(privileged-ports) so you can use this command to obtain the required permissions, or run it as root (not recommended).
 
-First:
+
 ```bash
 
 setcap 'cap_net_bind_service=+ep' /path/to/program
