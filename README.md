@@ -53,7 +53,7 @@ Domain Name = ha.local
 
 
 
-So Servers can access to redis-master node by using this address:   
+So application can access to redis-master node by using this address:   
 redis.ha.local
 
   
