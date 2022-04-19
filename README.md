@@ -45,18 +45,15 @@ The application uses HAnoProxY as a Dns Resolver.
   
   
 
-Redis master=10.10.10.1
+Redis master = 10.10.10.1   
+Redis replica1 = 10.10.10.2   
+Redis replica2 = 10.10.10.3   
+DnsRecord Name = redis   
+Domain Name = ha.local   
 
-Redis replica1=10.10.10.2
 
-Redis replica2=10.10.10.3
 
-DnsRecord Name=redis
-
-Domain Name= ha.local
-
-So Servers can access to master redis nodes use this address:
-
+So Servers can access to redis-master node by using this address:   
 redis.ha.local
 
   
