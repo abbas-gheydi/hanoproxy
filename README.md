@@ -1,6 +1,6 @@
 # HAnoProxY
 
-## About The Project
+## About The Project:
 
 HAnoProxY is a DNS server which is built to bring high availability and load balancing for the services without using any kind of proxy server.
 
@@ -16,7 +16,7 @@ Furthermore, DNS is capable of acting as a load balancer and routes users to mul
 
   
 
-HAnoProxY architect:
+## How it Works:
 
   
 
@@ -36,7 +36,7 @@ health Check protocols:
   
   
 
-Redis Sentinel Example:
+## Redis Sentinel Example:
 
 In this scenario we have 3 redis servers and redis-sentinel installed on them as well. Our application does not understand redis Sentinel and it only accepts one ip address/dns for redis connection.
 
@@ -174,7 +174,7 @@ After master failure:
 
 ```
 
-How to use it:
+## How to use it:
 
   
 
