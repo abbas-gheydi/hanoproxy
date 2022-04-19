@@ -20,7 +20,7 @@ Furthermore, DNS is capable of acting as a load balancer and routes users to mul
 
   
 
-HAnoProxY is developed purley in Go and it can act as an authoritative and recursive DNS nameserver at the same time. It checks the health of listed endpoints and returns a healthy ip address to the Users/Services. It has two mechanisms for load balancing: by default it is round robin but it can be configured as an Active-Passive load balancing too.
+HAnoProxY is developed purley in Go and it can act as an authoritative and recursive DNS nameserver at the same time. It checks the health of listed endpoints and returns a healthy ip address to the Users/Services. It has two mechanisms for load balancing, by default it is **round robin** but it can be configured as an **Active-Passive** load balancing too.
 
 health Check protocols:
 
@@ -84,41 +84,46 @@ TTL: "10"  #Seconds
 
 UpdateInterval: "60"  #Seconds
 
+
+
 DnsRecords:
 
 - Name: "redis"
 
-ServiceType: "sentinel"
+  ServiceType: "sentinel"
 
-Options:
+  Options:
 
-CheckForHealth: true
+   CheckForHealth: true
 
-SentinelMonitorMasterName: "mymaster"
+   SentinelMonitorMasterName: "mymaster"
 
-Ip:
+  Ip:
 
-- Addr: "10.10.10.1"  #predefined master ip (optional, it automatically detected by server)
+  - Addr: "10.10.10.1"  #predefined master ip (optional, it automatically detected by server)
 
-Sentinels:
 
-- Addr: "10.10.10.1"
+  Sentinels:
 
-Port: "26379"
+  - Addr: "10.10.10.1"
 
-Password: "auth_pass"
+    Port: "26379"
 
-- Addr: "10.10.10.2"
+    Password: "auth_pass"
+    
 
-Port: "26379"
+  - Addr: "10.10.10.2"
 
-Password: "auth_pass"
+    Port: "26379"
 
-- Addr: "10.10.10.3"
+    Password: "auth_pass"
+    
 
-Port: "26379"
+  - Addr: "10.10.10.3"
 
-Password: "auth_pass"
+    Port: "26379"
+
+    Password: "auth_pass"
 
   
 
