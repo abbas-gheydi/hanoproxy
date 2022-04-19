@@ -192,7 +192,8 @@ edit hanoproxy.yaml
 Put hanoproxy.yaml into current directory or /etc/hanoproxy/
 Then run hanoproxy.
 
-By default, non-root users can not bind port 53(privileged-ports) so you can use this command to obtain the required permissions, or run it as root (not recommended).
+By default, non-root users can not bind port 53(privileged-ports) so you can use this command to obtain the required permissions,   
+or just run it as root (not recommended).
 
 
 ```bash
