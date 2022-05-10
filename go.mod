@@ -1,4 +1,4 @@
-module github.com/abbas-gheydi/hanoproxy
+module github.com/Abbas-gheydi/hanoproxy
 
 go 1.17
 
