@@ -1,0 +1,16 @@
+[Unit]
+Description=dns server
+After=network.target auditd.service
+
+[Service]
+ExecStart=/usr/bin/hanoproxy
+ExecReload=/bin/kill -HUP $MAINPID
+RestartSec=3
+KillMode=process
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+Alias=dns.service
+
