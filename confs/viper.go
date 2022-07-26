@@ -3,6 +3,7 @@ package confs
 import (
 	"fmt"
 
+	"github.com/Abbas-gheydi/hanoproxy/dns/records"
 	"github.com/Abbas-gheydi/hanoproxy/dns/server"
 	"github.com/Abbas-gheydi/hanoproxy/model"
 	"github.com/spf13/viper"
@@ -32,5 +33,6 @@ func Read() {
 		panic(fmt.Errorf("Fatal error config file: %w \n", err))
 	}
 	*server.Configs = HaNoProxy.GlobalOptions
+	records.HADomain = HaNoProxy.GlobalOptions.HADomain
 
 }

@@ -106,3 +106,14 @@ DnsRecords:
    - Addr: "10.10.1.1"
    - Addr: "10.10.1.2"
 
+
+##################################################
+# default address for not declared records ( like * record) #
+ - Name:        ""
+   ServiceType: "none"
+   Options:
+    CheckForHealth: false
+   Ip:
+   - Addr: "192.168.6.6"
+   - Addr: "192.168.7.7"
+

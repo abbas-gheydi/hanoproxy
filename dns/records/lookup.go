@@ -10,6 +10,7 @@ import (
 
 var (
 	DnsRecords recordspool
+	HADomain   string
 )
 
 type recordspool interface {
@@ -46,6 +47,13 @@ func (r *recordMap) Lookup(requestQuery string) (responseIp string, count int, e
 	requestQuery = strings.ToLower(requestQuery)
 	r.Mutex.Lock()
 	count = len(r.Table[requestQuery].Ip)
+	//check for * record
+	if count == 0 {
+		default_domain := "." + HADomain + "."
+		count = len(r.Table[default_domain].Ip)
+		requestQuery = default_domain
+
+	}
 
 	if count > 0 {
 		//choose load balancing method
