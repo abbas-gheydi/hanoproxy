@@ -22,8 +22,8 @@ type Configs struct {
 func Read() {
 	viper.SetConfigName("hanoproxy")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath(".")
 	viper.AddConfigPath("/etc/hanoproxy/")
+	viper.AddConfigPath(".")
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("Fatal error config file: %w \n", err))
